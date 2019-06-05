@@ -1,0 +1,41 @@
+﻿body {
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    .flex-container a:link {
+        color: black;
+    }
+
+    .flex-container a:visited {
+        color: black;
+    }
+
+.flex-item {
+    width: 150px;
+    height: 150px;
+    border-style: solid;
+    margin: 10px;
+    position: relative;
+}
+
+.flex-item-selected {
+    background-color: lightgray;
+}
+
+.flex-item-label {
+    position: absolute;
+    padding: 20px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 150px;
+    height: 100px;
+    text-align: center;
+}
+

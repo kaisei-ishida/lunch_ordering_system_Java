@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "PublicTerminalHome";
+}
+
+<link href="~/Content/tablet.css" rel="stylesheet" type="text/css" />
+
+<h2>受け取り確認</h2>
+
+<div class="flex-container">
+    @foreach (var item in ViewBag.OrderList)
+    {
+        <a href="../Order/SelectedReceipt?orderId=@item.id">
+            <div class="flex-item@{if (item.is_receipted){<text> flex-item-selected</text>}}">
+                <div class="flex-item-label">
+                    <p>@item.m_user.name</p>
+                    <br />
+                    <p>@item.m_item_category.name</p>
+                </div>
+            </div>
+        </a>
+    }
+</div>

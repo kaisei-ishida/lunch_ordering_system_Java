@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "OpenCalendarSetting";
+}
+
+<h2>営業日設定</h2>
+
+<div class="form-horizontal">
+    <h4>今月</h4>
+    <table>
+        <tr>
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th>土</th>
+            <th>日</th>
+        </tr>
+        @for(int i = 0; i < ViewBag.Calendar.Count; i++)
+        {
+            if(i % 7 == 0)
+            {
+                @:<tr>
+            }
+            @:<td align="center">
+            if(ViewBag.Calendar[i] == null)
+            {
+                @:
+            }
+            else if (ViewBag.OpenDayList[ViewBag.Calendar[i]-1])
+            {
+                <a href="./OpenCalendarSetting?orderCalendar=@ViewBag.calendarIdList[ViewBag.Calendar[i]-1]&isOpen=false">@ViewBag.Calendar[i]</a>
+            }
+            else
+            {
+                <a href="./OpenCalendarSetting?orderCalendar=@ViewBag.calendarIdList[ViewBag.Calendar[i]-1]&isOpen=true">X</a>
+            }
+            @:</td>
+            if(i % 7 == 6)
+            {
+                @:</tr>
+            }
+        }
+    </table>
+</div>
+

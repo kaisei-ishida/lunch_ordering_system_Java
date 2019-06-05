@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DatabaseModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="key_values">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="key" Type="text" Nullable="false" />
+          <Property Name="value" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="m_item_category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="text" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="is_exist" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="m_user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login_id" Type="text" Nullable="false" />
+          <Property Name="login_password" Type="text" Nullable="false" />
+          <Property Name="role" Type="text" Nullable="false" />
+          <Property Name="name" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_billing">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="month" Type="date" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="charge" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_billing_close">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="billing_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="closed_at" Type="datetime" Precision="0" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="t_order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="order_calendar_id" Type="int" Nullable="false" />
+          <Property Name="item_category_id" Type="int" Nullable="false" />
+          <Property Name="ordered_at" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="is_receipted" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_order_calendar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="is_open" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_order_close">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_calendar_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="closed_at" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="DatabaseModelStoreContainer">
+          <EntitySet Name="key_values" EntityType="Self.key_values" Schema="lunch_ordering_system" store:Type="Tables" />
+          <EntitySet Name="m_item_category" EntityType="Self.m_item_category" Schema="lunch_ordering_system" store:Type="Tables" />
+          <EntitySet Name="m_user" EntityType="Self.m_user" Schema="lunch_ordering_system" store:Type="Tables" />
+          <EntitySet Name="t_billing" EntityType="Self.t_billing" Schema="lunch_ordering_system" store:Type="Tables" />
+          <EntitySet Name="t_billing_close" EntityType="Self.t_billing_close" Schema="lunch_ordering_system" store:Type="Tables" />
+          <EntitySet Name="t_order" EntityType="Self.t_order" Schema="lunch_ordering_system" store:Type="Tables" />
+          <EntitySet Name="t_order_calendar" EntityType="Self.t_order_calendar" Schema="lunch_ordering_system" store:Type="Tables" />
+          <EntitySet Name="t_order_close" EntityType="Self.t_order_close" Schema="lunch_ordering_system" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="key_values">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="key" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="value" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="m_item_category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="is_exist" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="t_order" Relationship="DatabaseModel.m_item_categoryt_order" FromRole="m_item_category" ToRole="t_order" />
+        </EntityType>
+        <EntityType Name="m_user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login_id" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="login_password" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="t_order" Relationship="DatabaseModel.m_usert_order" FromRole="m_user" ToRole="t_order" />
+          <NavigationProperty Name="t_order_close" Relationship="DatabaseModel.m_usert_order_close" FromRole="m_user" ToRole="t_order_close" />
+          <NavigationProperty Name="t_billing" Relationship="DatabaseModel.m_usert_billing" FromRole="m_user" ToRole="t_billing" />
+          <NavigationProperty Name="t_billing_close" Relationship="DatabaseModel.m_usert_billing_close" FromRole="m_user" ToRole="t_billing_close" />
+        </EntityType>
+        <EntityType Name="t_order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="order_calendar_id" Type="Int32" Nullable="false" />
+          <Property Name="item_category_id" Type="Int32" Nullable="false" />
+          <Property Name="ordered_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="is_receipted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="m_user" Relationship="DatabaseModel.m_usert_order" FromRole="t_order" ToRole="m_user" />
+          <NavigationProperty Name="t_order_calendar" Relationship="DatabaseModel.t_order_calendart_order" FromRole="t_order" ToRole="t_order_calendar" />
+          <NavigationProperty Name="m_item_category" Relationship="DatabaseModel.m_item_categoryt_order" FromRole="t_order" ToRole="m_item_category" />
+        </EntityType>
+        <EntityType Name="t_order_calendar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <Property Name="is_open" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="t_order" Relationship="DatabaseModel.t_order_calendart_order" FromRole="t_order_calendar" ToRole="t_order" />
+          <NavigationProperty Name="t_order_close" Relationship="DatabaseModel.t_order_calendart_order_close" FromRole="t_order_calendar" ToRole="t_order_close" />
+        </EntityType>
+        <EntityType Name="t_order_close">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_calendar_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="closed_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="t_order_calendar" Relationship="DatabaseModel.t_order_calendart_order_close" FromRole="t_order_close" ToRole="t_order_calendar" />
+          <NavigationProperty Name="m_user" Relationship="DatabaseModel.m_usert_order_close" FromRole="t_order_close" ToRole="m_user" />
+        </EntityType>
+        <EntityContainer Name="DatabaseContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="key_values" EntityType="Self.key_values" />
+          <EntitySet Name="m_item_category" EntityType="Self.m_item_category" />
+          <EntitySet Name="m_user" EntityType="Self.m_user" />
+          <EntitySet Name="t_order" EntityType="Self.t_order" />
+          <EntitySet Name="t_order_calendar" EntityType="Self.t_order_calendar" />
+          <EntitySet Name="t_order_close" EntityType="Self.t_order_close" />
+          <AssociationSet Name="m_usert_order" Association="DatabaseModel.m_usert_order">
+            <End Role="m_user" EntitySet="m_user" />
+            <End Role="t_order" EntitySet="t_order" />
+          </AssociationSet>
+          <AssociationSet Name="t_order_calendart_order" Association="DatabaseModel.t_order_calendart_order">
+            <End Role="t_order_calendar" EntitySet="t_order_calendar" />
+            <End Role="t_order" EntitySet="t_order" />
+          </AssociationSet>
+          <AssociationSet Name="m_item_categoryt_order" Association="DatabaseModel.m_item_categoryt_order">
+            <End Role="m_item_category" EntitySet="m_item_category" />
+            <End Role="t_order" EntitySet="t_order" />
+          </AssociationSet>
+          <AssociationSet Name="t_order_calendart_order_close" Association="DatabaseModel.t_order_calendart_order_close">
+            <End Role="t_order_calendar" EntitySet="t_order_calendar" />
+            <End Role="t_order_close" EntitySet="t_order_close" />
+          </AssociationSet>
+          <AssociationSet Name="m_usert_order_close" Association="DatabaseModel.m_usert_order_close">
+            <End Role="m_user" EntitySet="m_user" />
+            <End Role="t_order_close" EntitySet="t_order_close" />
+          </AssociationSet>
+          <EntitySet Name="t_billing" EntityType="DatabaseModel.t_billing" />
+          <AssociationSet Name="m_usert_billing" Association="DatabaseModel.m_usert_billing">
+            <End Role="m_user" EntitySet="m_user" />
+            <End Role="t_billing" EntitySet="t_billing" />
+          </AssociationSet>
+          <EntitySet Name="t_billing_close" EntityType="DatabaseModel.t_billing_close" />
+          <AssociationSet Name="m_usert_billing_close" Association="DatabaseModel.m_usert_billing_close">
+            <End Role="m_user" EntitySet="m_user" />
+            <End Role="t_billing_close" EntitySet="t_billing_close" />
+          </AssociationSet>
+          <AssociationSet Name="t_billingt_billing_close" Association="DatabaseModel.t_billingt_billing_close">
+            <End Role="t_billing" EntitySet="t_billing" />
+            <End Role="t_billing_close" EntitySet="t_billing_close" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="m_usert_order">
+          <End Type="DatabaseModel.m_user" Role="m_user" Multiplicity="1" />
+          <End Type="DatabaseModel.t_order" Role="t_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="m_user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="t_order">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="t_order_calendart_order">
+          <End Type="DatabaseModel.t_order_calendar" Role="t_order_calendar" Multiplicity="1" />
+          <End Type="DatabaseModel.t_order" Role="t_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_order_calendar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="t_order">
+              <PropertyRef Name="order_calendar_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="m_item_categoryt_order">
+          <End Type="DatabaseModel.m_item_category" Role="m_item_category" Multiplicity="1" />
+          <End Type="DatabaseModel.t_order" Role="t_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="m_item_category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="t_order">
+              <PropertyRef Name="item_category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="t_order_calendart_order_close">
+          <End Type="DatabaseModel.t_order_calendar" Role="t_order_calendar" Multiplicity="1" />
+          <End Type="DatabaseModel.t_order_close" Role="t_order_close" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_order_calendar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="t_order_close">
+              <PropertyRef Name="order_calendar_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="m_usert_order_close">
+          <End Type="DatabaseModel.m_user" Role="m_user" Multiplicity="1" />
+          <End Type="DatabaseModel.t_order_close" Role="t_order_close" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="m_user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="t_order_close">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="t_billing">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="month" Type="DateTime" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="charge" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="m_user" Relationship="DatabaseModel.m_usert_billing" FromRole="t_billing" ToRole="m_user" />
+          <NavigationProperty Name="t_billing_close" Relationship="DatabaseModel.t_billingt_billing_close" FromRole="t_billing" ToRole="t_billing_close" />
+        </EntityType>
+        <Association Name="m_usert_billing">
+          <End Type="DatabaseModel.m_user" Role="m_user" Multiplicity="1" />
+          <End Type="DatabaseModel.t_billing" Role="t_billing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="m_user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="t_billing">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="t_billing_close">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="billing_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="closed_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="m_user" Relationship="DatabaseModel.m_usert_billing_close" FromRole="t_billing_close" ToRole="m_user" />
+          <NavigationProperty Name="t_billing" Relationship="DatabaseModel.t_billingt_billing_close" FromRole="t_billing_close" ToRole="t_billing" />
+        </EntityType>
+        <Association Name="m_usert_billing_close">
+          <End Type="DatabaseModel.m_user" Role="m_user" Multiplicity="1" />
+          <End Type="DatabaseModel.t_billing_close" Role="t_billing_close" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="m_user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="t_billing_close">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="t_billingt_billing_close">
+          <End Type="DatabaseModel.t_billing" Role="t_billing" Multiplicity="1" />
+          <End Type="DatabaseModel.t_billing_close" Role="t_billing_close" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_billing">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="t_billing_close">
+              <PropertyRef Name="billing_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseContext">
+          <EntitySetMapping Name="key_values">
+            <EntityTypeMapping TypeName="DatabaseModel.key_values">
+              <MappingFragment StoreEntitySet="key_values">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="key" ColumnName="key" />
+                <ScalarProperty Name="value" ColumnName="value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="m_item_category">
+            <EntityTypeMapping TypeName="DatabaseModel.m_item_category">
+              <MappingFragment StoreEntitySet="m_item_category">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="is_exist" ColumnName="is_exist" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="m_user">
+            <EntityTypeMapping TypeName="DatabaseModel.m_user">
+              <MappingFragment StoreEntitySet="m_user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="login_id" ColumnName="login_id" />
+                <ScalarProperty Name="login_password" ColumnName="login_password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_order">
+            <EntityTypeMapping TypeName="DatabaseModel.t_order">
+              <MappingFragment StoreEntitySet="t_order">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="order_calendar_id" ColumnName="order_calendar_id" />
+                <ScalarProperty Name="item_category_id" ColumnName="item_category_id" />
+                <ScalarProperty Name="ordered_at" ColumnName="ordered_at" />
+                <ScalarProperty Name="is_receipted" ColumnName="is_receipted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_order_calendar">
+            <EntityTypeMapping TypeName="DatabaseModel.t_order_calendar">
+              <MappingFragment StoreEntitySet="t_order_calendar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="is_open" ColumnName="is_open" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_order_close">
+            <EntityTypeMapping TypeName="DatabaseModel.t_order_close">
+              <MappingFragment StoreEntitySet="t_order_close">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="order_calendar_id" ColumnName="order_calendar_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="closed_at" ColumnName="closed_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_billing">
+            <EntityTypeMapping TypeName="DatabaseModel.t_billing">
+              <MappingFragment StoreEntitySet="t_billing">
+                <ScalarProperty Name="charge" ColumnName="charge" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_billing_close">
+            <EntityTypeMapping TypeName="DatabaseModel.t_billing_close">
+              <MappingFragment StoreEntitySet="t_billing_close">
+                <ScalarProperty Name="closed_at" ColumnName="closed_at" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="billing_id" ColumnName="billing_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="なし" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

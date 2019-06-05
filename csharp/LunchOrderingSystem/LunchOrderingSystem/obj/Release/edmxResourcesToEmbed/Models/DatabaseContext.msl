@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseContext">
+    <EntitySetMapping Name="key_values">
+      <EntityTypeMapping TypeName="DatabaseModel.key_values">
+        <MappingFragment StoreEntitySet="key_values">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="key" ColumnName="key" />
+          <ScalarProperty Name="value" ColumnName="value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="m_item_category">
+      <EntityTypeMapping TypeName="DatabaseModel.m_item_category">
+        <MappingFragment StoreEntitySet="m_item_category">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="is_exist" ColumnName="is_exist" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="m_user">
+      <EntityTypeMapping TypeName="DatabaseModel.m_user">
+        <MappingFragment StoreEntitySet="m_user">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="login_id" ColumnName="login_id" />
+          <ScalarProperty Name="login_password" ColumnName="login_password" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_order">
+      <EntityTypeMapping TypeName="DatabaseModel.t_order">
+        <MappingFragment StoreEntitySet="t_order">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="order_calendar_id" ColumnName="order_calendar_id" />
+          <ScalarProperty Name="item_category_id" ColumnName="item_category_id" />
+          <ScalarProperty Name="ordered_at" ColumnName="ordered_at" />
+          <ScalarProperty Name="is_receipted" ColumnName="is_receipted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_order_calendar">
+      <EntityTypeMapping TypeName="DatabaseModel.t_order_calendar">
+        <MappingFragment StoreEntitySet="t_order_calendar">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="is_open" ColumnName="is_open" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_order_close">
+      <EntityTypeMapping TypeName="DatabaseModel.t_order_close">
+        <MappingFragment StoreEntitySet="t_order_close">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="order_calendar_id" ColumnName="order_calendar_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="closed_at" ColumnName="closed_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_billing">
+      <EntityTypeMapping TypeName="DatabaseModel.t_billing">
+        <MappingFragment StoreEntitySet="t_billing">
+          <ScalarProperty Name="charge" ColumnName="charge" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="month" ColumnName="month" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_billing_close">
+      <EntityTypeMapping TypeName="DatabaseModel.t_billing_close">
+        <MappingFragment StoreEntitySet="t_billing_close">
+          <ScalarProperty Name="closed_at" ColumnName="closed_at" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="billing_id" ColumnName="billing_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
