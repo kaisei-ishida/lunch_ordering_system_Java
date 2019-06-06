@@ -92,10 +92,7 @@ namespace LunchOrderingSystem.Controllers
                 if (billingTable != null)
                 {
                     //ユーザ情報取得
-                    var userId = db.m_user
-                        .Where(u => u.login_id.Equals(User.Identity.Name))
-                        .FirstOrDefault()
-                        .id;
+                    var userId = int.Parse(User.Identity.Name);
 
                     if (isPay)
                     {
@@ -141,10 +138,7 @@ namespace LunchOrderingSystem.Controllers
                 var selectedMonthHeadNext = selectedMonthHead.AddMonths(1);
 
                 //ユーザ情報取得
-                var userId = db.m_user
-                .Where(u => u.login_id.Equals(User.Identity.Name))
-                .FirstOrDefault()
-                .id;
+                var userId = int.Parse(User.Identity.Name);
 
                 //支払い完了していたら
                 if(db.t_billing_close.Where(b => b.t_billing.user_id == userId

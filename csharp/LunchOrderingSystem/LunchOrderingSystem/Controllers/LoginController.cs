@@ -27,8 +27,15 @@ namespace LunchOrderingSystem.Controllers
             {
                 if (this.membershipProvider.ValidateUser(model.UserName, model.Password))
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, false);
-                    return RedirectToAction("Index", "Home");
+                    using(var db = new DatabaseContext())
+                    {
+                        var user = db.m_user
+                            .Where(u => u.login_id == model.UserName)
+                            .FirstOrDefault();
+
+                        FormsAuthentication.SetAuthCookie(user.id.ToString(), false);
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
             }
             ViewBag.Message = "ログインに失敗しました。";

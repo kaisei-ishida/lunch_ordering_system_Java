@@ -1,4 +1,4 @@
-﻿// T4 コード生成がモデル 'C:\Users\h.suzuki\source\repos\LunchOrderingSystem\LunchOrderingSystem\Models\DatabaseContext.edmx' に対して有効です。 
+﻿// T4 コード生成がモデル 'C:\ProjectData\Repos\lunch_ordering\csharp\LunchOrderingSystem\LunchOrderingSystem\Models\DatabaseContext.edmx' に対して有効です。 
 // レガシ コード生成を有効にするには、'コード生成方法' デザイナー
 // プロパティの値を 'レガシ ObjectContext' に変更します。このプロパティは、デザイナーでモデルが開かれている場合に [プロパティ] ウィンドウ
 // で使用できます。

@@ -21,6 +21,8 @@
         <EntityTypeShape EntityType="DatabaseModel.t_billing_close" Width="1.5" PointX="1.125" PointY="6.75" />
         <AssociationConnector Association="DatabaseModel.m_usert_billing_close" />
         <AssociationConnector Association="DatabaseModel.t_billingt_billing_close" />
+        <EntityTypeShape EntityType="DatabaseModel.m_user_role" Width="1.5" PointX="7.375" PointY="0.75" />
+        <AssociationConnector Association="DatabaseModel.m_userm_user_role" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -21,6 +21,7 @@ namespace LunchOrderingSystem.Models
             this.t_order_close = new HashSet<t_order_close>();
             this.t_billing = new HashSet<t_billing>();
             this.t_billing_close = new HashSet<t_billing_close>();
+            this.m_user_role = new HashSet<m_user_role>();
         }
     
         public int id { get; set; }
@@ -37,5 +38,7 @@ namespace LunchOrderingSystem.Models
         public virtual ICollection<t_billing> t_billing { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<t_billing_close> t_billing_close { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<m_user_role> m_user_role { get; set; }
     }
 }

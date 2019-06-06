@@ -82,5 +82,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="m_user_role">
+      <EntityTypeMapping TypeName="DatabaseModel.m_user_role">
+        <MappingFragment StoreEntitySet="m_user_role">
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

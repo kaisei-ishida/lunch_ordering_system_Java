@@ -197,6 +197,9 @@
     <Compile Include="Models\m_user.cs">
       <DependentUpon>DatabaseContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\m_user_role.cs">
+      <DependentUpon>DatabaseContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\t_billing.cs">
       <DependentUpon>DatabaseContext.tt</DependentUpon>
     </Compile>

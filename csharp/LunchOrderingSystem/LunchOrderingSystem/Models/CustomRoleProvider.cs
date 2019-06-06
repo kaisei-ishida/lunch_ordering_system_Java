@@ -35,18 +35,20 @@ namespace LunchOrderingSystem.Models
             throw new NotImplementedException();
         }
 
-        public override string[] GetRolesForUser(string username)
+        public override string[] GetRolesForUser(string userId)
         {
             
             using (var db = new DatabaseContext())
             {
-                var user = db.m_user
-                    .Where(u => u.login_id.Equals(username))
-                    .FirstOrDefault();
+                int id = int.Parse(userId);
+                var roles = db.m_user_role
+                    .Where(u => u.m_user.id == id)
+                    .Select(u => u.role)
+                    .ToArray();
 
-                if (user != null)
+                if (roles != null)
                 {
-                    return new string[] { user.role };
+                    return roles;
                 }
             }
             return new string[] { "Unknown" };
@@ -62,8 +64,8 @@ namespace LunchOrderingSystem.Models
             using (var db = new DatabaseContext())
             {
                 int id = int.Parse(userId);
-                var user = db.m_user
-                    .Where(u => u.id == id && u.role.Equals(roleName))
+                var user = db.m_user_role
+                    .Where(u => u.m_user.id == id && u.role == roleName)
                     .FirstOrDefault();
 
                 if (user != null)

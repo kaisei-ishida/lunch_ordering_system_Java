@@ -33,5 +33,6 @@ namespace LunchOrderingSystem.Models
         public virtual DbSet<t_order_close> t_order_close { get; set; }
         public virtual DbSet<t_billing> t_billing { get; set; }
         public virtual DbSet<t_billing_close> t_billing_close { get; set; }
+        public virtual DbSet<m_user_role> m_user_role { get; set; }
     }
 }

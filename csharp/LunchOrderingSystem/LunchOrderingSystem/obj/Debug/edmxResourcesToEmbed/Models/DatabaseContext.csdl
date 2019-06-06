@@ -31,6 +31,7 @@
     <NavigationProperty Name="t_order_close" Relationship="DatabaseModel.m_usert_order_close" FromRole="m_user" ToRole="t_order_close" />
     <NavigationProperty Name="t_billing" Relationship="DatabaseModel.m_usert_billing" FromRole="m_user" ToRole="t_billing" />
     <NavigationProperty Name="t_billing_close" Relationship="DatabaseModel.m_usert_billing_close" FromRole="m_user" ToRole="t_billing_close" />
+    <NavigationProperty Name="m_user_role" Relationship="DatabaseModel.m_userm_user_role" FromRole="m_user" ToRole="m_user_role" />
   </EntityType>
   <EntityType Name="t_order">
     <Key>
@@ -107,6 +108,11 @@
     <AssociationSet Name="t_billingt_billing_close" Association="DatabaseModel.t_billingt_billing_close">
       <End Role="t_billing" EntitySet="t_billing" />
       <End Role="t_billing_close" EntitySet="t_billing_close" />
+    </AssociationSet>
+    <EntitySet Name="m_user_role" EntityType="DatabaseModel.m_user_role" />
+    <AssociationSet Name="m_userm_user_role" Association="DatabaseModel.m_userm_user_role">
+      <End Role="m_user" EntitySet="m_user" />
+      <End Role="m_user_role" EntitySet="m_user_role" />
     </AssociationSet>
   </EntityContainer>
   <Association Name="m_usert_order">
@@ -224,6 +230,27 @@
       </Principal>
       <Dependent Role="t_billing_close">
         <PropertyRef Name="billing_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="m_user_role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="role" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="m_user" Relationship="DatabaseModel.m_userm_user_role" FromRole="m_user_role" ToRole="m_user" />
+  </EntityType>
+  <Association Name="m_userm_user_role">
+    <End Type="DatabaseModel.m_user" Role="m_user" Multiplicity="1" />
+    <End Type="DatabaseModel.m_user_role" Role="m_user_role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="m_user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="m_user_role">
+        <PropertyRef Name="user_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

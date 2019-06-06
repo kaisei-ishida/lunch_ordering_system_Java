@@ -106,8 +106,7 @@ namespace LunchOrderingSystem.Controllers
 
                 //ユーザIDの取得
                 var user = db.m_user
-                    .Where(u => u.login_id.Equals(User.Identity.Name))
-                    .FirstOrDefault();
+                    .Find(int.Parse(User.Identity.Name));
                 ViewBag.UserName = user.name;
                 ViewBag.UserId = user.id;
 

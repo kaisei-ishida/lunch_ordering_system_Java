@@ -21,8 +21,7 @@ namespace LunchOrderingSystem.Controllers
             {
                 //ユーザ情報取得
                 var user = db.m_user
-                    .Where(u => u.login_id.Equals(User.Identity.Name))
-                    .FirstOrDefault();
+                    .Find(int.Parse(User.Identity.Name));
 
                 //商品カテゴリが存在しているかどうか取得
                 var isExistCategory = db.m_item_category
@@ -64,8 +63,7 @@ namespace LunchOrderingSystem.Controllers
             {
                 //ユーザ情報取得
                 var user = db.m_user
-                    .Where(u => u.login_id.Equals(User.Identity.Name))
-                    .FirstOrDefault();
+                    .Find(int.Parse(User.Identity.Name));
 
                 //受付終了しているかどうか取得
                 var isClosed = db.t_order_close
@@ -93,8 +91,7 @@ namespace LunchOrderingSystem.Controllers
             {
                 //ユーザ情報取得
                 var user = db.m_user
-                    .Where(u => u.login_id.Equals(User.Identity.Name))
-                    .FirstOrDefault();
+                    .Find(int.Parse(User.Identity.Name));
 
                 //注文情報取得
                 var order = db.t_order
@@ -141,8 +138,7 @@ namespace LunchOrderingSystem.Controllers
             {
                 //ユーザ情報取得
                 var user = db.m_user
-                        .Where(u => u.login_id.Equals(User.Identity.Name))
-                        .FirstOrDefault();
+                        .Find(int.Parse(User.Identity.Name));
 
                 //既に受付終了しているかどうか取得
                 var isClosed = db.t_order_close
