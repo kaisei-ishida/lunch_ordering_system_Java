@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>SelectOperation</h2>
+
+<div class="form-horizontal">
+    <h4>業務を選択してください。</h4>
+    @if (ViewBag.HavingRoles != null)
+    {
+        foreach (string role in ViewBag.HavingRoles)
+        {
+            @Html.ActionLink(role, role.Substring(0, role.Count() - 1) + "Home")<br />
+        }
+    }
+</div>

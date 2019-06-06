@@ -238,6 +238,7 @@
     <Content Include="Views\Home\PublicTerminalHome.cshtml" />
     <Content Include="Views\Billing\Index.cshtml" />
     <Content Include="Views\Billing\ShowBilling.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

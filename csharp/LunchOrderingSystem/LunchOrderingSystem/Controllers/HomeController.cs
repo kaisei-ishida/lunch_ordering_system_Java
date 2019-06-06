@@ -21,21 +21,29 @@ namespace LunchOrderingSystem.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            if (Request.IsAuthenticated && User.IsInRole("Administrators"))
+            var defineRoles = new List<string>
             {
-                return RedirectToAction("AdministratorHome");
-            }
-            if (Request.IsAuthenticated && User.IsInRole("Users"))
+                "Administrators",
+                "Users",
+                "Vendors",
+                "PublicTerminals",
+            };
+
+            if (Request.IsAuthenticated)
             {
-                return RedirectToAction("UserHome");
-            }
-            if (Request.IsAuthenticated && User.IsInRole("Vendors"))
-            {
-                return RedirectToAction("VendorHome");
-            }
-            if (Request.IsAuthenticated && User.IsInRole("PublicTerminals"))
-            {
-                return RedirectToAction("PublicTerminalHome");
+                var havingRoles = new List<string>();
+                foreach(var r in defineRoles)
+                {
+                    if (User.IsInRole(r))
+                    {
+                        havingRoles.Add(r);
+                    }
+                }
+                if (havingRoles.Count() == 1)
+                {
+                    return RedirectToAction(havingRoles.Last().Substring(0, havingRoles.Last().Count() - 1) + "Home");
+                }
+                ViewBag.HavingRoles = havingRoles;
             }
             
             return View();
