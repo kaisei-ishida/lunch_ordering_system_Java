@@ -31,7 +31,15 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.role)
+            @{
+                string dispRole = "";
+                foreach (var role in Model.m_user_role.OrderBy(o => o.role))
+                {
+                    dispRole += role.role + ", ";
+                }
+                dispRole = dispRole.Substring(0, dispRole.Count() - 2);
+            }
+            @Html.DisplayFor(modelItem => dispRole)
         </dd>
 
         <dt>

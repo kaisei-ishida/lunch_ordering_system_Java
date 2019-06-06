@@ -4,6 +4,27 @@
     ViewBag.Title = "ユーザ管理画面";
 }
 
+<script>
+jQuery(function($) {
+	jQuery("#multiSelectSample1").multiselect({
+		selectedList: 100,
+		checkAllText: "全選択",
+		uncheckAllText: "全選択解除",
+		noneSelectedText: "未選択です",
+		selectedText: "# 個選択"
+	});
+});
+
+    close: function() {
+        var multiSelectSample1 = jQuery("#multiSelectSample1 option:selected");
+        for (i = 0, len = multiSelectSample1.length; i < len; i++) {
+            alert(multiSelectSample1[i].text);
+            alert(multiSelectSample1[i].value);
+        }
+    }
+</script>
+
+
 <h2>ユーザ管理画面</h2>
 
 @using (Html.BeginForm()) 
@@ -33,16 +54,10 @@
         <div class="form-group">
             <label class="control-label col-md-2" for="role">権限</label>
             <div class="col-md-10">
-                @Html.DropDownListFor(
-                    model => model.role,
-                    new SelectListItem[] {
-                        new SelectListItem() { Value="Users", Text="Users" },
-                        new SelectListItem() { Value="Vendors", Text="Vendors" },
-                        new SelectListItem() { Value="PublicTerminals", Text="PublicTerminals" },
-                        new SelectListItem() { Value="Administrators", Text="Administrators" }
-                    },
-                    "選択してください",
-                    new { @class = "form-control" })
+                <input type="checkbox" name="roles" value="Users"> Users<br>
+                <input type="checkbox" name="roles" value="Vendors"> Vendors<br>
+                <input type="checkbox" name="roles" value="PublicTerminals"> PublicTerminals<br>
+                <input type="checkbox" name="roles" value="Administrators"> Administrators<br>
                 @*@Html.EditorFor(model => model.role, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.role, "", new { @class = "text-danger" })
             </div>

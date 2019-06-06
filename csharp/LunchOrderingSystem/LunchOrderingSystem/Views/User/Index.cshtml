@@ -29,7 +29,18 @@
             @Html.DisplayFor(modelItem => item.login_id)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.role)
+            @{
+                string dispRole = "";
+                foreach (var role in item.m_user_role.OrderBy(o => o.role))
+                {
+                    dispRole += role.role + ", ";
+                }
+                if (dispRole.Count() > 0)
+                {
+                    dispRole = dispRole.Substring(0, dispRole.Count() - 2);
+                }
+            }
+            @Html.DisplayFor(modelItem => dispRole)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.name)
