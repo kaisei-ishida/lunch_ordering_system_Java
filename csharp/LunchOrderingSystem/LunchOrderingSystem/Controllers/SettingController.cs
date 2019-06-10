@@ -28,10 +28,12 @@ namespace LunchOrderingSystem.Controllers
 
             using (var db = new DatabaseContext())
             {
-                //カレンダーListの作成
                 DateTime today = DateTime.Today;
                 var monthHead = new DateTime(today.Year, today.Month, 1);
-                var nextMonthHead =monthHead.AddMonths(1);
+                var nextMonthHead = monthHead.AddMonths(1);
+                var nextNextMonthHead = monthHead.AddMonths(2);
+
+                //カレンダーの作成
                 var offset = (int)monthHead.DayOfWeek - 1 % 7;
                 var calendarList = Enumerable.Repeat<int?>(null, 42).ToList();
                 for (int i = 0; i < DateTime.DaysInMonth(today.Year, today.Month); i++)
@@ -40,6 +42,15 @@ namespace LunchOrderingSystem.Controllers
                 }
                 ViewBag.Calendar = calendarList;
 
+                var offset2 = (int)nextMonthHead.DayOfWeek - 1 % 7;
+                var calendarList2 = Enumerable.Repeat<int?>(null, 42).ToList();
+                for (int i = 0; i < DateTime.DaysInMonth(nextMonthHead.Year, nextMonthHead.Month); i++)
+                {
+                    calendarList2[offset2 + i] = i + 1;
+                }
+                ViewBag.Calendar2 = calendarList2;
+
+                //注文可能日の取得
                 var openDayList = db.t_order_calendar
                     .Where(d => d.date >= monthHead && d.date < nextMonthHead)
                     .OrderBy(d => d.date)
@@ -47,12 +58,30 @@ namespace LunchOrderingSystem.Controllers
                     .ToList();
                 ViewBag.OpenDayList = openDayList;
 
+                var openDayList2 = db.t_order_calendar
+                    .Where(d => d.date >= nextMonthHead && d.date < nextNextMonthHead)
+                    .OrderBy(d => d.date)
+                    .Select(d => d.is_open)
+                    .ToList();
+                ViewBag.OpenDayList2 = openDayList2;
+
+                //カレンダーIDの取得
                 var calendarIdList = db.t_order_calendar
                     .Where(d => d.date >= monthHead && d.date < nextMonthHead)
                     .OrderBy(d => d.date)
                     .Select(d => d.id)
                     .ToList();
                 ViewBag.CalendarIdList = calendarIdList;
+
+                var calendarIdList2 = db.t_order_calendar
+                    .Where(d => d.date >= nextMonthHead && d.date < nextNextMonthHead)
+                    .OrderBy(d => d.date)
+                    .Select(d => d.id)
+                    .ToList();
+                ViewBag.CalendarIdList2 = calendarIdList2;
+
+                ViewBag.MonthHead = monthHead;
+                ViewBag.NextMonthHead = nextMonthHead;
             }
             return View();
         }

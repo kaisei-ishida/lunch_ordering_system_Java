@@ -39,10 +39,11 @@
                 @{
                     var roleList = Model.m_user_role.Select(u => u.role).ToList();
                 }
-                <input type="checkbox" name="roles" value="Users" @if (roleList.Contains("Users")){ <text>checked</text> ; } > Users<br>
-                <input type="checkbox" name="roles" value="Vendors" @if (roleList.Contains("Vendors")){ <text>checked</text> ; } > Vendors<br>
-                <input type="checkbox" name="roles" value="PublicTerminals" @if (roleList.Contains("PublicTerminals")){ <text>checked</text> ; } > PublicTerminals<br>
-                <input type="checkbox" name="roles" value="Administrators" @if (roleList.Contains("Administrators")){ <text>checked</text> ; } > Administrators<br>
+                <input type="checkbox" name="roles" value="Users" @if (roleList.Contains("Users")) { <text> checked</text> ; }> Users<br>
+                <input type="checkbox" name="roles" value="Vendors" @if (roleList.Contains("Vendors")) { <text> checked</text> ; }> Vendors<br>
+                <input type="checkbox" name="roles" value="PublicTerminals" @if (roleList.Contains("PublicTerminals")) { <text> checked</text> ; }> PublicTerminals<br>
+                <input type="checkbox" name="roles" value="Administrators" @if (roleList.Contains("Administrators")) { <text> checked</text> ; }> Administrators<br>
+                <input type="checkbox" name="roles" value="Collectors" @if (roleList.Contains("Collectors")) { <text> checked</text> ; }> Collectors<br>
                 @Html.ValidationMessageFor(model => model.role, "", new { @class = "text-danger" })
             </div>
         </div>

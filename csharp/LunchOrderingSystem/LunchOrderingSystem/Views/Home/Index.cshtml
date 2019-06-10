@@ -11,7 +11,15 @@
     {
         foreach (string role in ViewBag.HavingRoles)
         {
-            @Html.ActionLink(role, role.Substring(0, role.Count() - 1) + "Home")<br />
+            var displayName = new Dictionary<string, string>
+            {
+                { "Administrators", "システム管理" },
+                { "Users", "注文" },
+                { "Vendors", "弁当屋" },
+                { "PublicTerminals", "受け取り確認端末" },
+                { "Collectors", "代金徴収" },
+            };
+            @Html.ActionLink(displayName[role], role.Substring(0, role.Count() - 1) + "Home")<br />
         }
     }
 </div>

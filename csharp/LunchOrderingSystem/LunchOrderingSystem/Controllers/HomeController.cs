@@ -27,6 +27,7 @@ namespace LunchOrderingSystem.Controllers
                 "Users",
                 "Vendors",
                 "PublicTerminals",
+                "Collectors",
             };
 
             if (Request.IsAuthenticated)
@@ -272,6 +273,16 @@ namespace LunchOrderingSystem.Controllers
                 ViewBag.OrderList = orders;
             }
             return View();
+        }
+
+        /// <summary>
+        /// 代金徴収者向けのホーム画面です。
+        /// </summary>
+        /// <returns>ビュー</returns>
+        [Authorize(Roles = "Collectors")]
+        public ActionResult CollectorHome()
+        {
+            return RedirectToAction("../Billing");
         }
 
         /// <summary>

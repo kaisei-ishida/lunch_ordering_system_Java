@@ -17,17 +17,26 @@
 <link href="~/Content/paper.css" rel="stylesheet" type="text/css" />
 
 <section class="sheet">
-    <h2>領収書</h2>
+    @if (ViewBag.BillingClose == null)
+    {
+        <h2>請求書</h2>
+    }
+    else
+    {
+        <h2>領収書</h2>
+    }
+
     <div class="information">
         <p>発行日 @DateTime.Now.ToString("d")</p>
-        <p>請求日 @ViewBag.BillingClose.closed_at.ToString("d")</p>
+        @if (ViewBag.BillingClose != null){<p>領収日 @ViewBag.BillingClose.closed_at.ToString("d")</p>}
         <p>請求番号 @String.Format("{0:D7}", ViewBag.Billing.id)</p>
     </div>
 
 
     <div>
         <p>@ViewBag.Billing.m_user.name 様</p>
-        <p>以下の通り徴収致しました。</p>
+        @if (ViewBag.BillingClose != null){<p>以下の通り徴収致しました。</p>}
+        else {<p>以下の通り請求申し上げます。</p>}
         <p>金額　@ViewBag.Billing.charge 円</p>
         <p>@ViewBag.Billing.month.Year 年 @ViewBag.Billing.month.Month 月分</p>
     </div>

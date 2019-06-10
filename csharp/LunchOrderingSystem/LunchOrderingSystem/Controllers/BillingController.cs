@@ -11,7 +11,7 @@ namespace LunchOrderingSystem.Controllers
     public class BillingController : Controller
     {
         // GET: Billing
-        [Authorize(Roles = "Administrators")]
+        [Authorize(Roles = "Collectors")]
         public ActionResult Index()
         {
             var today = DateTime.Today;
@@ -20,7 +20,7 @@ namespace LunchOrderingSystem.Controllers
             return Index(lastMonth.Year, lastMonth.Month);
         }
 
-        [Authorize(Roles = "Administrators")]
+        [Authorize(Roles = "Collectors")]
         [HttpPost]
         public ActionResult Index(int year, int month)
         {
@@ -49,16 +49,19 @@ namespace LunchOrderingSystem.Controllers
                             int charge = 0;
                             var orders = db.t_order
                                 .Where(o => o.t_order_calendar.date >= selectedMonthHead && o.t_order_calendar.date < selectedNextMonthHead && o.user_id == user.id);
-                            if(orders.Any()) charge = orders.Sum(o => o.m_item_category.price);
 
                             //挿入するテーブルを作成・追加
-                            var table = new t_billing
-                            {
-                                month = selectedMonthHead,
-                                user_id = user.id,
-                                charge = charge
-                            };
-                            db.t_billing.Add(table);
+                            if (orders.Any()) {
+                                charge = orders.Sum(o => o.m_item_category.price);
+                                
+                                var table = new t_billing
+                                {
+                                    month = selectedMonthHead,
+                                    user_id = user.id,
+                                    charge = charge
+                                };
+                                db.t_billing.Add(table);
+                            }
                         }
                         //クエリ発行
                         db.SaveChanges();
@@ -82,7 +85,7 @@ namespace LunchOrderingSystem.Controllers
             }
         }
 
-        [Authorize(Roles = "Administrators")]
+        [Authorize(Roles = "Collectors")]
         public ActionResult Pay(int id, bool isPay, int year, int month)
         {
             using (var db = new DatabaseContext())
@@ -140,9 +143,9 @@ namespace LunchOrderingSystem.Controllers
                 //ユーザ情報取得
                 var userId = int.Parse(User.Identity.Name);
 
-                //支払い完了していたら
-                if(db.t_billing_close.Where(b => b.t_billing.user_id == userId
-                && b.t_billing.month == selectedMonthHead).Any())
+                //請求が発生していたら
+                if(db.t_billing.Where(b => b.user_id == userId
+                && b.month == selectedMonthHead).Any())
                 {
                     //支払い情報を取得
                     var billing = db.t_billing

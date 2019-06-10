@@ -58,6 +58,7 @@ jQuery(function($) {
                 <input type="checkbox" name="roles" value="Vendors"> Vendors<br>
                 <input type="checkbox" name="roles" value="PublicTerminals"> PublicTerminals<br>
                 <input type="checkbox" name="roles" value="Administrators"> Administrators<br>
+                <input type="checkbox" name="roles" value="Collectors"> Collectors<br>
                 @*@Html.EditorFor(model => model.role, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.role, "", new { @class = "text-danger" })
             </div>
