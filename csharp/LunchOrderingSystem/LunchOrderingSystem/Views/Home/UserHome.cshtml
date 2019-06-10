@@ -37,7 +37,7 @@
                 {
                     <input type="hidden" name="orderCalendar" value="@ViewBag.TodayCalendarId" />
                     <input type="hidden" name="category" value="@category.id" />
-                    <input type="submit" value="@category.name" /><br />
+                    <input type="submit" value="@category.name" onclick='return confirm("@category.name を注文します");' /><br />
                 }
             }
         }
