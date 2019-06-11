@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/HomeServlet")
+@WebServlet("/home")
 public class HomeServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
