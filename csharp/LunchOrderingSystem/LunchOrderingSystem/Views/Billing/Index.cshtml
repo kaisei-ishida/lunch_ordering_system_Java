@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewBag.SelectedMonthHead.Year 年 @ViewBag.SelectedMonthHead.Month 月の支払い状況</h2>
+
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                名前
+            </th>
+            <th>
+                請求額
+            </th>
+            <th>
+                支払い
+            </th>
+        </tr>
+
+        @foreach (var item in ViewBag.BillingList)
+        {
+            <tr>
+                <td>
+                    @item.m_user.name
+                </td>
+                <td>
+                    @item.charge 円
+                </td>
+                <td>
+                    @if (item.t_billing_close.Count != 0)
+                    {
+                        foreach (var i in item.t_billing_close)
+                        {
+                            @ViewBag.UserList[i.user_id].name <text>により</text> @i.closed_at <text>に徴収済</text>
+                        }
+                    }
+                    else
+                    {
+                        using (@Html.BeginForm("Pay", "Billing"))
+                        {
+                            <input type="hidden" name="id" value="@item.id" />
+                            <input type="hidden" name="isPay" value="true" />
+                            <input type="hidden" name="year" value="@ViewBag.SelectedMonthHead.Year" />
+                            <input type="hidden" name="month" value="@ViewBag.SelectedMonthHead.Month" />
+                            <input type="submit" value="支払い済にする" /><br />
+                        }
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

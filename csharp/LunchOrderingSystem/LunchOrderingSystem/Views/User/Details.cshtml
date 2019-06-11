@@ -1,0 +1,58 @@
+﻿@model LunchOrderingSystem.Models.m_user
+
+@{
+    ViewBag.Title = "ユーザ管理画面";
+}
+
+<h2>ユーザ管理画面</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.login_id)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            ID
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.login_id)
+        </dd>
+
+        <dt>
+            パスワード
+        </dt>
+
+        <dd>
+            *セキュリティの為表示されません*
+        </dd>
+
+        <dt>
+            権限
+        </dt>
+
+        <dd>
+            @{
+                string dispRole = "";
+                foreach (var role in Model.m_user_role.OrderBy(o => o.role))
+                {
+                    dispRole += role.role + ", ";
+                }
+                dispRole = dispRole.Substring(0, dispRole.Count() - 2);
+            }
+            @Html.DisplayFor(modelItem => dispRole)
+        </dd>
+
+        <dt>
+            名前
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

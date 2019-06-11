@@ -1,0 +1,54 @@
+﻿@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+    body {
+        width: 210mm; /* needed for Chrome */
+    }
+}
+
+.sheet {
+    padding: 20px;
+    width: 210mm;
+    height: 296mm; /* 1mm余裕をもたせる */
+    page-break-after: always;
+}
+
+    .sheet h2 {
+        text-align: center;
+    }
+
+.information p{
+    text-align: right;
+}
+
+.details {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+table {
+    width: 90%;
+    margin: 0 auto;
+}
+
+table th, table td {
+    border: solid 1px black;
+    
+}
+
+/* プレビュー用のスタイル */
+@media screen {
+    body {
+        background: #eee;
+    }
+
+    .sheet {
+        background: white; /* 背景を白く */
+        box-shadow: 0 .5mm 2mm rgba(0,0,0,.3); /* ドロップシャドウ */
+        margin: 5mm;
+    }
+}

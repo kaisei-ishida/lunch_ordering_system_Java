@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e8872de8c5ff48cf8a3cf6bfeb9c7299" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="DatabaseModel.key_values" Width="1.5" PointX="8.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.m_item_category" Width="1.5" PointX="2.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.m_user" Width="1.5" PointX="1.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.t_order" Width="1.5" PointX="4.875" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.t_order_calendar" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.t_order_close" Width="1.5" PointX="5" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="DatabaseModel.m_usert_order" />
+        <AssociationConnector Association="DatabaseModel.t_order_calendart_order" />
+        <AssociationConnector Association="DatabaseModel.m_item_categoryt_order" />
+        <AssociationConnector Association="DatabaseModel.t_order_calendart_order_close" />
+        <AssociationConnector Association="DatabaseModel.m_usert_order_close" />
+        <EntityTypeShape EntityType="DatabaseModel.t_billing" Width="1.5" PointX="0.5" PointY="4" />
+        <AssociationConnector Association="DatabaseModel.m_usert_billing" />
+        <EntityTypeShape EntityType="DatabaseModel.t_billing_close" Width="1.5" PointX="1.125" PointY="6.75" />
+        <AssociationConnector Association="DatabaseModel.m_usert_billing_close" />
+        <AssociationConnector Association="DatabaseModel.t_billingt_billing_close" />
+        <EntityTypeShape EntityType="DatabaseModel.m_user_role" Width="1.5" PointX="7.375" PointY="0.75" />
+        <AssociationConnector Association="DatabaseModel.m_userm_user_role" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

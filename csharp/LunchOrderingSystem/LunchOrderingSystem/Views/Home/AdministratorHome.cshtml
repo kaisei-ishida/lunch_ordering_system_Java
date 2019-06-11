@@ -1,0 +1,110 @@
+﻿@model IEnumerable<LunchOrderingSystem.Models.t_order>
+
+@{
+    ViewBag.Title = "AdministratorHome";
+}
+
+<style type="text/css">
+    <!--
+    canvas {
+        max-width: 700px;
+    }
+    -->
+</style>
+
+<h2>管理ページ</h2>
+
+<div>
+    <!-- @Html.ActionLink("支払い状況の管理", "", "Billing") | -->
+    @Html.ActionLink("ユーザの管理", "", "User") |
+    @Html.ActionLink("カテゴリの管理", "", "ItemCategory") |
+    @Html.ActionLink("営業日の設定", "OpenCalendarSetting", "Setting")
+
+    <h4>販売実績</h4>
+    <p>今月の支払い金額は @ViewBag.TotalPrice 円です</p>
+    <canvas id="chart"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <script>
+        var ctx = document.getElementById("chart");
+        var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['@Html.Raw(String.Join("','", ViewBag.DateList))'],
+
+                datasets: [
+                    {
+                        label: '注文数(数)',
+                        data: ['@Html.Raw(String.Join("','", ViewBag.Orders))'],
+                        borderColor: "rgba(255,0,0,1)",
+                        backgroundColor: "rgba(0,0,0,0)"
+                    }
+                ],
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: '注文数（@ViewBag.DateList[0]~@ViewBag.DateList[6]）'
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            //suggestedMax: 40,
+                            suggestedMin: 0,
+                            stepSize: 10,
+                            callback: function (value, index, values) {
+                                return value + '個'
+                            }
+                        }
+                    }]
+                },
+            }
+        });
+    </script>
+    <br />
+</div>
+
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                注文履歴
+            </th>
+            <th>
+                注文者
+            </th>
+            <th>
+                商品名
+            </th>
+            <th>
+                価格
+            </th>
+            <th>
+                受け取り
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Reverse())
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ordered_at)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.m_user.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.m_item_category.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.m_item_category.price) 円
+                </td>
+                <td>
+                    @if (item.is_receipted) {
+                        @:〇
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

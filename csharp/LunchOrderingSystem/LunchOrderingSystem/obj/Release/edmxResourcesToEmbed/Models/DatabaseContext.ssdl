@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabaseModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="key_values">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="key" Type="text" Nullable="false" />
+    <Property Name="value" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="m_item_category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="text" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="is_exist" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="m_user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="login_id" Type="text" Nullable="false" />
+    <Property Name="login_password" Type="text" Nullable="false" />
+    <Property Name="role" Type="text" Nullable="false" />
+    <Property Name="name" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="m_user_role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="role" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_billing">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="month" Type="date" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="charge" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_billing_close">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="billing_id" Type="int" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="closed_at" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_order">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="order_calendar_id" Type="int" Nullable="false" />
+    <Property Name="item_category_id" Type="int" Nullable="false" />
+    <Property Name="ordered_at" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="is_receipted" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_order_calendar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="is_open" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_order_close">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_calendar_id" Type="int" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="closed_at" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="DatabaseModelStoreContainer">
+    <EntitySet Name="key_values" EntityType="Self.key_values" Schema="lunch_ordering_system" store:Type="Tables" />
+    <EntitySet Name="m_item_category" EntityType="Self.m_item_category" Schema="lunch_ordering_system" store:Type="Tables" />
+    <EntitySet Name="m_user" EntityType="Self.m_user" Schema="lunch_ordering_system" store:Type="Tables" />
+    <EntitySet Name="m_user_role" EntityType="Self.m_user_role" Schema="lunch_ordering_system" store:Type="Tables" />
+    <EntitySet Name="t_billing" EntityType="Self.t_billing" Schema="lunch_ordering_system" store:Type="Tables" />
+    <EntitySet Name="t_billing_close" EntityType="Self.t_billing_close" Schema="lunch_ordering_system" store:Type="Tables" />
+    <EntitySet Name="t_order" EntityType="Self.t_order" Schema="lunch_ordering_system" store:Type="Tables" />
+    <EntitySet Name="t_order_calendar" EntityType="Self.t_order_calendar" Schema="lunch_ordering_system" store:Type="Tables" />
+    <EntitySet Name="t_order_close" EntityType="Self.t_order_close" Schema="lunch_ordering_system" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

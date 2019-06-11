@@ -1,0 +1,160 @@
+﻿@model IEnumerable<LunchOrderingSystem.Models.t_order>
+
+@{
+    ViewBag.Title = "Home";
+    var isLastNum = false;
+    var itemCount = Model
+                    .GroupBy(m => m.m_item_category)
+                    .OrderBy(m => m.Key.id)
+                    .Select(m => new
+                    {
+                        Name = m.Key.name,
+                        Price = m.Key.price,
+                        Count = m.Count()
+                    })
+                    .ToList();
+}
+
+<link href="~/Content/calendar-table.css" rel="stylesheet" type="text/css" />
+
+<h2>Home</h2>
+
+<div class="form-horizontal">
+    <h4>@ViewBag.UserName さんのホーム画面</h4>
+    @if (ViewBag.Order == null)
+    {
+        if (!ViewBag.IsOpenDay)
+        {
+            <p>本日の弁当販売はありません</p>
+        }
+        else if (ViewBag.IsOpen) //カレンダーテーブルのopenも参照
+        {
+            <p>メニューを選択してください</p>
+            foreach (var category in ViewBag.ItemCategory)
+            {
+                using (@Html.BeginForm("Order", "Order"))
+                {
+                    <input type="hidden" name="orderCalendar" value="@ViewBag.TodayCalendarId" />
+                    <input type="hidden" name="category" value="@category.id" />
+                    <input type="submit" value="@category.name" onclick='return confirm("@category.name を注文します");' /><br />
+                }
+            }
+        }
+        else
+        {
+            <p>本日の注文は締め切りました</p>
+        }
+    }
+    else if (ViewBag.Order)
+    {
+        <p>弁当の配布が完了しました</p>
+    }
+    else
+    {
+        <p>注文済みです</p>
+        if (ViewBag.IsOpen)
+        {
+            using (@Html.BeginForm("Cancel", "Order"))
+            {
+                <input type="hidden" name="orderCalendar" value="@ViewBag.TodayCalendarId" />
+                <input type="submit" value="注文をキャンセルする" /><br />
+            }
+        }
+        else
+        {
+            using (@Html.BeginForm("Receipt", "Order"))
+            {
+                <input type="hidden" name="orderCalendar" value="@ViewBag.TodayCalendarId" />
+                <input type="submit" value="受け取り済みにする" /><br />
+            }
+        }
+    }
+
+</div>
+
+<div>
+    <h4>@DateTime.Now.Year 年 @DateTime.Now.Month 月 注文カレンダー</h4>
+    <table class="calendar">
+        <tr>
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th>土</th>
+            <th>日</th>
+        </tr>
+        @for (int i = 0; i < ViewBag.Calendar.Count; i++)
+        {
+            if (i % 7 == 0)
+            {
+                @:<tr>
+                }
+                @:<td align="center">
+                    if (ViewBag.Calendar[i] == null)
+                    {
+                        @:
+                    }
+                    else if (Model.Where(m => m.t_order_calendar.date.Day == ViewBag.Calendar[i]).Any())
+                    {
+                        @ViewBag.Calendar[i]
+                        @:<br />
+                        @Model.Where(m => m.t_order_calendar.date.Day == ViewBag.Calendar[i]).SingleOrDefault().m_item_category.name
+                        isLastNum = true;
+                    }
+                    else
+                    {
+                        @ViewBag.Calendar[i]
+                        isLastNum = true;
+                    }
+                @:</td>
+                if (i % 7 == 6)
+                {
+                @:</tr>
+                if (isLastNum && ViewBag.Calendar[i + 1] == null)
+                {
+                    break;
+                }
+            }
+        }
+    </table>
+    <p>
+        @foreach (var item in itemCount)
+        {
+            @item.Name @:(@item.Price 円) x @item.Count 個 = @(item.Price * item.Count) 円<br />
+        }
+    </p>
+    <p>今月の支払い金額 @ViewBag.TotalPrice 円</p>
+
+    @Html.ActionLink("先月分の請求書/領収書発行", "../Billing/ShowBilling", "", new { target = "_blank" })
+
+    <!-- <table class="table">
+        <tr>
+            <th>
+                注文履歴
+            </th>
+            <th>
+                商品名
+            </th>
+            <th>
+                価格
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Reverse())
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ordered_at)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.m_item_category.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.m_item_category.price) 円
+            </td>
+        </tr>
+        }
+
+    </table> -->
+</div>

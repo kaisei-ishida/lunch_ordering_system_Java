@@ -1,0 +1,39 @@
+﻿@model LunchOrderingSystem.Models.m_item_category
+
+@{
+    ViewBag.Title = "Dele商品カテゴリ管理画面te";
+}
+
+<h2>商品カテゴリ管理画面</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.name)を削除します</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

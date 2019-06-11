@@ -1,0 +1,72 @@
+﻿@model LunchOrderingSystem.Models.m_user
+
+@{
+    ViewBag.Title = "ユーザ管理画面";
+}
+
+<h2>ユーザ管理画面</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>アカウント情報の変更</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.login_id, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2" for="login_id">ID</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.login_id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.login_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.login_password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="login_password" name="login_password" type="text" />
+                @Html.ValidationMessageFor(model => model.login_password, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="name">権限</label>
+            <div class="col-md-10">
+                @{
+                    var roleList = Model.m_user_role.Select(u => u.role).ToList();
+                }
+                <input type="checkbox" name="roles" value="Users" @if (roleList.Contains("Users")) { <text> checked</text> ; }> Users<br>
+                <input type="checkbox" name="roles" value="Vendors" @if (roleList.Contains("Vendors")) { <text> checked</text> ; }> Vendors<br>
+                <input type="checkbox" name="roles" value="PublicTerminals" @if (roleList.Contains("PublicTerminals")) { <text> checked</text> ; }> PublicTerminals<br>
+                <input type="checkbox" name="roles" value="Administrators" @if (roleList.Contains("Administrators")) { <text> checked</text> ; }> Administrators<br>
+                <input type="checkbox" name="roles" value="Collectors" @if (roleList.Contains("Collectors")) { <text> checked</text> ; }> Collectors<br>
+                @Html.ValidationMessageFor(model => model.role, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2" for="name">名前</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+
+        @Html.ActionLink("パスワードの変更", "EditPassword", new { id = Model.id })
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
