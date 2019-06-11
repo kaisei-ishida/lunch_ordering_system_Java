@@ -27,6 +27,14 @@
     <Property Name="role" Type="text" Nullable="false" />
     <Property Name="name" Type="text" Nullable="false" />
   </EntityType>
+  <EntityType Name="m_user_role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="role" Type="text" Nullable="false" />
+  </EntityType>
   <EntityType Name="t_billing">
     <Key>
       <PropertyRef Name="id" />
@@ -43,7 +51,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="billing_id" Type="int" Nullable="false" />
     <Property Name="user_id" Type="int" Nullable="false" />
-    <Property Name="closed_at" Type="datetime" Precision="0" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="closed_at" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="t_order">
     <Key>
@@ -77,6 +85,7 @@
     <EntitySet Name="key_values" EntityType="Self.key_values" Schema="lunch_ordering_system" store:Type="Tables" />
     <EntitySet Name="m_item_category" EntityType="Self.m_item_category" Schema="lunch_ordering_system" store:Type="Tables" />
     <EntitySet Name="m_user" EntityType="Self.m_user" Schema="lunch_ordering_system" store:Type="Tables" />
+    <EntitySet Name="m_user_role" EntityType="Self.m_user_role" Schema="lunch_ordering_system" store:Type="Tables" />
     <EntitySet Name="t_billing" EntityType="Self.t_billing" Schema="lunch_ordering_system" store:Type="Tables" />
     <EntitySet Name="t_billing_close" EntityType="Self.t_billing_close" Schema="lunch_ordering_system" store:Type="Tables" />
     <EntitySet Name="t_order" EntityType="Self.t_order" Schema="lunch_ordering_system" store:Type="Tables" />

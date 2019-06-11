@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Home";
-    dynamic kvs = new LunchOrderingSystem.Models.KeyValueStore();
     var isLastNum = false;
     var itemCount = Model
                     .GroupBy(m => m.m_item_category)

@@ -109,9 +109,7 @@ namespace LunchOrderingSystem.Controllers
             using (var db = new DatabaseContext())
             {
                 var today = DateTime.Today;
-                var tomorrow = today.AddDays(1);
                 var monthHead = new DateTime(today.Year, today.Month, 1);
-                var nextMonthHead = monthHead.AddMonths(1);
 
                 //ユーザIDの取得
                 var user = db.m_user
@@ -204,7 +202,6 @@ namespace LunchOrderingSystem.Controllers
             using (var db = new DatabaseContext())
             {
                 DateTime today = DateTime.Today;
-                DateTime monthHead = new DateTime(today.Year, today.Month, 1);
 
                 var user = db.t_order_close
                     .Where(u => u.closed_at > today)

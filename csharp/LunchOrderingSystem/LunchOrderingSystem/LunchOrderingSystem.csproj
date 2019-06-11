@@ -186,7 +186,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseContext.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\KeyValueStore.cs" />
     <Compile Include="Models\key_values.cs">
       <DependentUpon>DatabaseContext.tt</DependentUpon>
     </Compile>
