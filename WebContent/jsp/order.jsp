@@ -9,7 +9,7 @@
 <body>
 
 注文したい料理を選んでください 　　　　　<input type="submit"value="決定"><br>
-　　　　　　　　　　　　　　　　　　　　　　　　　　<input type="submit"value="キャンセル"><br>
+　　　　　　　　　　　　　　　　　　　　　　　　<input type="submit"value="キャンセル"><br>
 <table border="1">
 <tr>
 <th>メニュー</th>
