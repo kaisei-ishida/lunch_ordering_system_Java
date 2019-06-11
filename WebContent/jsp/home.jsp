@@ -10,7 +10,8 @@
 <p>home</p>
 IDとパスワードを入力してください。<br><br><br>
 <from action="/home/HomeServlet"method="get">
-ID<input type="text"><br><br><br>
-Password<input type="text"><br>
+ID <input type="text"name="ID"><br><br><br>
+Password <input type="text"name="Password"><br>
+</from>
 </body>
 </html>
