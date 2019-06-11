@@ -18,12 +18,18 @@ public class HomeServlet extends HttpServlet{
 		PrintWriter out=response.getWriter();
 		out.println("<html>");
 		out.println("<title>Lunch_ordering_system_JaVa</title>");
-		out.println("</html>");
+		out.println("<body>");
 		out.println("<h1>Lunch_ordering_System_Java</h1>");
-		out.println("<p>1.注文</p>");
-		out.println("<p>2.注文伝達係</p>");
-		out.println("<p>3.管理者</p>");
-		out.println("<p>4.代金回収</p>");
+		
+		out.println("<p>IDとパスワードを入力してください</p>");
+		out.println("<p>　</p>");
+		out.println("<p>ID</p>");
+		out.println("<p>　</p>");
+		out.println("<p>Password</p>");
+		
+		
+		out.println("</body>");
+		out.println("</html>");
 	}
 
 }
