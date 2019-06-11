@@ -29,7 +29,7 @@ public class HomeServlet extends HttpServlet{
 		out.println("<p>　</p>");
 		out.println("<p>Password</p>");
 		//パスワード入力用のテキストボックス
-		//テスト
+		//テスト2
 		
 		out.println("</body>");
 		out.println("</html>");
