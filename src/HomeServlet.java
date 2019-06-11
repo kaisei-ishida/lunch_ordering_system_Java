@@ -22,10 +22,13 @@ public class HomeServlet extends HttpServlet{
 		out.println("<h1>Lunch_ordering_System_Java</h1>");
 		
 		out.println("<p>IDとパスワードを入力してください</p>");
+		//入力用のテキストボックスの設定
 		out.println("<p>　</p>");
 		out.println("<p>ID</p>");
+		//ID入力用のテキストボックス
 		out.println("<p>　</p>");
 		out.println("<p>Password</p>");
+		//パスワード入力用のテキストボックス
 		
 		
 		out.println("</body>");
